@@ -1,373 +1,522 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Front Desk AI — Catch every lead your business is losing</title>
-<meta name="description" content="AI receptionists, instant-estimate widgets, and automations that catch every lead your home-service business is losing. Founder-built in Southern California." />
-<meta property="og:title" content="Front Desk AI — Catch every lead your business is losing" />
-<meta property="og:description" content="Your AI answers the phone. Your website prices the job. Built for home-service pros. Live in days, not months." />
-<meta property="og:image" content="/og-image.png" />
-<meta property="og:url" content="https://frontdeskaiteam.com/" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#faf8f4" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Front Desk AI — The AI Receptionist That Never Misses a Call</title>
+  <meta name="description" content="A 24/7 AI receptionist for any business. Answers every call, captures each caller's name, number, and reason — and texts you the summary in seconds." />
+  <style>
+    :root {
+      --navy: #002540;
+      --navy-soft: #0d3a5c;
+      --ink: #17242f;
+      --muted: #4d565f;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --accent: #0084e8;
+      --accent-wash: #e5f2fd;
+      --line: #dde5ee;
+      --green: #0a7d4f;
+      --green-wash: #e7f6ef;
+      --radius-card: 16px;
+      --z-nav: 100;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; }
+    h1, h2, h3 { color: var(--navy); text-wrap: balance; }
+    img { max-width: 100%; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--navy); color: #fff; text-decoration: none;
+      padding: 15px 30px; border-radius: 999px; font-weight: 700; font-size: 16.5px;
+      border: 2px solid var(--navy);
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-height: 48px;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,37,64,.22); }
+    .btn-ghost { background: #fff; color: var(--navy); border-color: var(--line); }
+    .btn-ghost:hover { box-shadow: 0 10px 24px rgba(0,37,64,.10); }
+    .btn-inverse { background: #fff; color: var(--navy); border-color: #fff; }
+
+    /* Nav */
+    .nav-outer {
+      position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-nav);
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 68px; }
+    .logo { font-weight: 800; font-size: 19px; color: var(--navy); text-decoration: none; letter-spacing: -.3px; }
+    .logo .dot { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.btn, .nav-links a.btn:hover { color: #fff; }
+    .nav-cta { padding: 10px 22px; font-size: 15px; min-height: 42px; }
+    @media (max-width: 820px) { .nav-links a:not(.btn) { display: none; } }
+
+    /* Hero */
+    .hero { padding: 132px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .kicker {
+      display: inline-block; font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.2vw, 54px); line-height: 1.08; letter-spacing: -.03em;
+      font-weight: 800; margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero .sub { font-size: 19px; color: var(--muted); max-width: 34em; margin-bottom: 30px; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+    .try-line { font-size: 15.5px; color: var(--muted); margin-bottom: 24px; }
+    .try-line a { color: var(--navy); text-decoration: none; }
+    .try-line a:hover { text-decoration: underline; }
+    .hero-points { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14.5px; font-weight: 600; color: var(--muted); }
+    .hero-points span::before { content: "✓"; color: var(--green); font-weight: 800; margin-right: 7px; }
+
+    /* Phone demo */
+    .demo-col { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+
+    .phone {
+      width: 320px; max-width: 88vw; background: var(--navy); border-radius: 42px; padding: 12px;
+      box-shadow: 0 24px 60px rgba(0,37,64,.28);
+    }
+    .phone-screen { background: #fff; border-radius: 32px; overflow: hidden; }
+    .phone-status {
+      display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700;
+      color: var(--navy); padding: 10px 18px 6px;
+    }
+    .call-head { display: flex; align-items: center; gap: 10px; padding: 8px 16px 12px; border-bottom: 1px solid var(--line); }
+    .call-avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--accent-wash);
+      color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center;
+    }
+    .call-name { font-weight: 800; font-size: 14.5px; color: var(--navy); }
+    .call-live { font-size: 12px; color: var(--green); font-weight: 700; }
+    .call-live::before { content: "●"; margin-right: 5px; animation: pulse 1.6s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    .transcript { padding: 14px 14px 8px; min-height: 218px; display: flex; flex-direction: column; gap: 9px; }
+    .bubble {
+      max-width: 86%; padding: 9px 13px; border-radius: 14px; font-size: 13px; line-height: 1.45;
+      opacity: 0; transform: translateY(8px);
+      animation: rise .45s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .bubble.ai { background: var(--accent-wash); color: #0b3252; border-bottom-left-radius: 4px; align-self: flex-start; }
+    .bubble.caller { background: var(--navy); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+    .bubble .who { display: block; font-size: 10px; font-weight: 800; letter-spacing: .8px; opacity: .65; margin-bottom: 2px; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    .captured { display: flex; gap: 8px; padding: 0 14px 14px; }
+    .cap {
+      flex: 1; text-align: center; font-size: 11.5px; font-weight: 700; color: var(--muted);
+      background: var(--bg); border-radius: 10px; padding: 8px 4px;
+      opacity: .45; transition: all .3s ease;
+    }
+    .cap.done { opacity: 1; color: var(--green); background: var(--green-wash); }
+    .cap.done::before { content: "✓ "; font-weight: 800; }
+    .replay {
+      font: inherit; font-size: 13.5px; font-weight: 700; color: var(--navy);
+      background: none; border: none; cursor: pointer; text-decoration: underline; padding: 6px;
+    }
+
+    /* Sections */
+    section { padding: 78px 0; }
+    .band-white { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .sec-label {
+      text-align: center; font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .sec-title { text-align: center; font-size: clamp(28px, 3.6vw, 38px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+    .sec-sub { text-align: center; font-size: 17px; color: var(--muted); max-width: 38em; margin: 0 auto 48px; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .step { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 30px 26px; }
+    .step .num {
+      display: inline-flex; width: 34px; height: 34px; border-radius: 50%;
+      background: var(--navy); color: #fff; font-weight: 800; font-size: 15px;
+      align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .step h3 { font-size: 19px; margin-bottom: 8px; letter-spacing: -.2px; }
+    .step p { font-size: 15.5px; color: var(--muted); }
+    .steps-cta { text-align: center; margin-top: 42px; }
+
+    /* Pricing */
+    .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; align-items: stretch; }
+    .tier {
+      position: relative; background: #fff; border: 1px solid var(--line);
+      border-radius: 20px; padding: 30px 26px; display: flex; flex-direction: column;
+    }
+    .tier.pop { border: 2px solid var(--accent); box-shadow: 0 18px 48px rgba(0,37,64,.08); }
+    .pop-badge {
+      position: absolute; top: -14px; left: 24px; background: var(--accent); color: #fff;
+      font-size: 12px; font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 5px 14px;
+    }
+    .tier .plan-name { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+    .tier .price-line { display: flex; align-items: baseline; gap: 7px; }
+    .tier .amount { font-size: 40px; font-weight: 800; color: var(--navy); letter-spacing: -1.2px; }
+    .tier .per { font-size: 14px; color: var(--muted); font-weight: 600; }
+    .tier .monthly { font-size: 17px; font-weight: 800; color: var(--accent); margin: 2px 0 8px; }
+    .tier .fit { font-size: 14px; color: var(--muted); padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+    .tier ul { list-style: none; margin: 0 0 22px; flex: 1; }
+    .tier li { padding: 7px 0; font-size: 14.5px; display: flex; gap: 9px; }
+    .tier li::before { content: "✓"; color: var(--green); font-weight: 800; }
+    .tier .btn { width: 100%; padding: 12px 20px; font-size: 15px; }
+    .price-note { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 26px; }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; max-width: 900px; margin: 0 auto; }
+    .feature { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 30px 26px; }
+    .feature .ico {
+      width: 44px; height: 44px; border-radius: 12px; background: var(--accent-wash);
+      display: flex; align-items: center; justify-content: center; font-size: 21px; margin-bottom: 16px;
+    }
+    .feature h3 { font-size: 18.5px; margin-bottom: 8px; letter-spacing: -.2px; }
+    .feature p { font-size: 15.5px; color: var(--muted); }
+
+    /* Trust */
+    .trust-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
+    @media (max-width: 820px) { .trust-inner { grid-template-columns: 1fr; } }
+    .trust-inner h2 { font-size: clamp(26px, 3.2vw, 34px); letter-spacing: -.02em; margin-bottom: 16px; text-align: left; }
+    .trust-inner .lead { font-size: 17px; color: var(--muted); margin-bottom: 0; }
+    .trust-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .trust-list li {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 14px 18px; font-size: 15.5px; font-weight: 600; color: var(--navy);
+      display: flex; gap: 12px; align-items: center;
+    }
+    .trust-list li::before { content: "✓"; color: var(--green); font-weight: 800; }
+
+    /* FAQ */
+    .faq { max-width: 720px; margin: 0 auto; }
+    .faq details { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; }
+    .faq summary {
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 22px; font-weight: 700; font-size: 16.5px; color: var(--navy); gap: 16px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--accent); transition: transform .2s ease; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq .answer { padding: 0 22px 20px; font-size: 15.5px; color: var(--muted); }
+
+    /* Final CTA */
+    .final { background: var(--navy); color: #fff; text-align: center; padding: 84px 0; }
+    .final h2 { color: #fff; font-size: clamp(30px, 4vw, 42px); letter-spacing: -.02em; margin-bottom: 14px; }
+    .final p { font-size: 18px; color: #b8cbdc; max-width: 34em; margin: 0 auto 32px; }
+    .final .micro { font-size: 14px; color: #8fa9c0; margin: 18px auto 0; }
+
+    /* Footer */
+    footer { background: #001a2e; color: #8fa9c0; padding: 40px 0; font-size: 14px; }
+    .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+    footer a { color: #c6d6e4; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .foot-logo { font-weight: 800; font-size: 17px; color: #fff; }
+    .foot-logo .dot { color: var(--accent); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .bubble { animation: none; opacity: 1; transform: none; }
+      .call-live::before { animation: none; }
+      .btn, .cap { transition: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="Front Desk AI home">
-      <span class="brand-tile">FD</span>Front Desk AI
-      <svg class="brand-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><g stroke="oklch(0.78 0.15 65)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.6" y1="4.6" x2="6.4" y2="6.4"/><line x1="17.6" y1="17.6" x2="19.4" y2="19.4"/><line x1="4.6" y1="19.4" x2="6.4" y2="17.6"/><line x1="17.6" y1="6.4" x2="19.4" y2="4.6"/></g></svg>
-    </a>
-    <nav class="nav-links" id="navLinks">
-      <a href="#services">What we do</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#demo">Try a demo</a>
-      <a href="#contact">Contact</a>
+  <div class="nav-outer">
+    <nav class="wrap">
+      <a class="logo" href="#top">Front Desk<span class="dot"> AI</span></a>
+      <div class="nav-links">
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn nav-cta" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+      </div>
     </nav>
-    <div class="nav-cta">
-      <a class="nav-ai" href="tel:+19514992842">Call the AI · (951) 499-2842</a>
-      <a class="btn btn-out" href="sms:+19099689533">📅 Book a call</a>
-      <a class="btn btn-amber" href="sms:+19099689533">💬 Text us</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
-</header>
 
-<main id="top">
-
-<!-- ============ 4.1 HERO ============ -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="kicker reveal"><span class="kicker-dot"></span>Built for Southern California trades</p>
-      <h1 class="reveal">Catch every lead your business is <span class="ink-blue">losing.</span></h1>
-      <p class="sub reveal">Your AI answers the phone. Your website prices the job. Your follow-ups send themselves. You stay on the roof, and the work stops going to whoever picks up first.</p>
-      <div class="hero-actions reveal">
-        <a class="btn btn-amber btn-lg" href="sms:+19099689533">💬 Text Matthew · (909) 968-9533</a>
-        <a class="btn btn-out btn-lg" href="sms:+19099689533">📅 Book a 15-min call</a>
-      </div>
-      <ul class="proof reveal">
-        <li><b>The AI</b> answers 24/7, not you</li>
-        <li>Missed calls texted back in under 30 sec</li>
-        <li>Live in days, not months</li>
-      </ul>
-    </div>
-    <div class="mock-wrap reveal" aria-hidden="true">
-      <div class="chatcard">
-        <div class="cc-head">
-          <span class="cc-avatar">FD</span>
-          <div class="cc-id"><b>Front Desk AI</b><small>answering for Summit Roofing</small></div>
-          <span class="cc-live"><i></i>LIVE</span>
+  <!-- HERO -->
+  <header class="hero wrap" id="top">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">24/7 AI Receptionist</span>
+        <h1>The receptionist who <em>never</em> misses a call.</h1>
+        <p class="sub">Your AI answers every call: nights, weekends, mid-job, mid-appointment, mid-meeting. It captures each caller's name, number, and reason, then texts you the summary in seconds.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://calendly.com/njanjubusiness/30min">Book a 10-Minute Demo</a>
+          <a class="btn btn-ghost" href="#demo">See It In Action</a>
         </div>
-        <div class="cc-body">
-          <div class="bubble ai">Thanks for calling Summit Roofing — how can I help?</div>
-          <div class="bubble cust">My roof's leaking, need someone this week.</div>
-          <div class="bubble ai">I can get you scheduled. What's the address &amp; best number?</div>
-        </div>
-        <div class="cc-foot">
-          <span class="ck">✓</span>
-          <div><b>Job booked while you worked</b><small>Roof replacement · Corona · Tue 9:00 AM</small></div>
+        <p class="try-line">Or call <a href="tel:+12296526686"><strong>(229) 652-6686</strong></a> right now and talk to the AI receptionist live.</p>
+        <div class="hero-points">
+          <span>Set up in under a week</span>
+          <span>Keep your current number</span>
+          <span>Month to month</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<div class="zig" aria-hidden="true"><svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,48 L0,24 L100,8 L200,28 L300,10 L400,30 L500,6 L600,26 L700,10 L800,30 L900,8 L1000,26 L1100,10 L1200,24 L1200,48 Z" fill="oklch(0.26 0.06 255)"/></svg></div>
-
-<!-- ============ 4.2 FOUNDING PARTNER + 4.3 PAIN (navy) ============ -->
-<section class="navyband sec">
-  <div class="wrap founding-wrap">
-    <p class="eyebrow reveal">Founding Partner Program</p>
-    <h2 class="reveal">We're onboarding our first 3 Founding Partners.</h2>
-    <p class="fp-body reveal">Front Desk AI is new — so instead of asking you to trust a wall of logos, we're doing it the honest way. The first 3 home-service businesses get founding rates locked in for life, priority builds, and direct access to the founder. In exchange: one video testimonial once the system books you real jobs.</p>
-    <!-- TESTIMONIAL SLOT: when first client testimonial exists, replace spot cards with real quote + name + company + photo -->
-    <div class="spots reveal">
-      <div class="spot"><svg class="spot-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg><span class="spot-n">Spot 1</span><span class="spot-status">OPEN</span></div>
-      <div class="spot"><svg class="spot-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg><span class="spot-n">Spot 2</span><span class="spot-status">OPEN</span></div>
-      <div class="spot"><svg class="spot-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg><span class="spot-n">Spot 3</span><span class="spot-status">OPEN</span></div>
-    </div>
-    <a class="btn btn-amber btn-lg reveal" href="sms:+19099689533">💬 Claim a founding spot → Text (909) 968-9533</a>
-  </div>
-</section>
-
-<section class="navyband" style="padding:0 0 clamp(72px,10vw,120px)">
-  <div class="wrap founding-wrap" style="max-width:880px">
-    <h2 class="sect-h reveal" style="margin-bottom:20px">A missed call isn't a missed call.<br>It's a <span class="ink-amber">$12,000</span> job you handed to a competitor.</h2>
-    <p class="fp-body reveal" style="margin-bottom:0">Most callers won't leave a voicemail: they dial the next name on Google, and you never even know it happened. Add the homeowners who visit your website at 9pm and leave without a trace, and the quiet leak is bigger than any ad budget can outrun.</p>
-  </div>
-</section>
-
-<div class="zig" aria-hidden="true"><svg viewBox="0 0 1200 48" preserveAspectRatio="none" style="transform:scaleY(-1)"><path d="M0,48 L0,24 L100,8 L200,28 L300,10 L400,30 L500,6 L600,26 L700,10 L800,30 L900,8 L1000,26 L1100,10 L1200,24 L1200,48 Z" fill="oklch(0.985 0.006 85)"/></svg></div>
-
-<!-- ============ 4.4 SERVICES ============ -->
-<section class="sec bg-light" id="services">
-  <div class="wrap">
-    <h2 class="sect-h reveal">Three systems. One job:<br><span class="ink-blue">stop the leak.</span></h2>
-    <p class="sect-sub reveal">Start with one. Stack them as you grow. Month-to-month, and we carry the risk.</p>
-    <div class="svc-grid">
-      <div class="svc reveal">
-        <div class="svc-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
-        <h3>AI Receptionist</h3>
-        <p>The AI answers every call 24/7, texts back missed ones, and books the job.</p>
-        <div class="svc-links"><a href="tel:+19514992842">Hear it live</a><a href="#pricing" data-ptab="rec">See pricing</a></div>
-      </div>
-      <div class="svc reveal">
-        <div class="svc-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="9" y2="11"/><line x1="12" y1="11" x2="13" y2="11"/><line x1="8" y1="15" x2="9" y2="15"/><line x1="12" y1="15" x2="13" y2="15"/></svg></div>
-        <h3>Instant Estimate Widgets</h3>
-        <p>Homeowners price their own job in 60 seconds. You get the lead.</p>
-        <div class="svc-links"><a href="https://frontdesk-demos.netlify.app/roof-estimate-ie/" target="_blank" rel="noopener">Try it</a><a href="#pricing" data-ptab="widget">See pricing</a></div>
-      </div>
-      <div class="svc reveal">
-        <div class="svc-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-        <h3>AI Automations</h3>
-        <p>Reviews, reactivation, follow-up: the busywork that wins jobs, on autopilot.</p>
-        <div class="svc-links"><a href="sms:+19099689533">Text us about it</a><a href="#pricing" data-ptab="auto">See pricing</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.5 DEEP DIVE: RECEPTIONIST ============ -->
-<section class="sec bg-gray" id="s-receptionist">
-  <div class="wrap feat-grid">
-    <div class="feat-copy reveal">
-      <h2>Every call answered by your AI. <span class="ink-blue">Every job booked for you.</span></h2>
-      <p class="lead">A human-sounding AI receptionist that never sleeps and never puts a customer on hold. The lead lands on your calendar, not your competitor's. You only get involved when there's a job to do.</p>
-      <ul class="checks">
-        <li>The AI answers 24/7: after-hours, overflow, or every call</li>
-        <li>Missed-call-to-text in under 30 seconds, automatically</li>
-        <li>Captures name, number, address &amp; the job, then texts you a summary</li>
-        <li>Books qualified jobs straight onto your calendar</li>
-      </ul>
-      <div class="feat-actions">
-        <a class="btn btn-amber" href="tel:+19514992842">Hear it live — (951) 499-2842</a>
-        <a class="btn btn-textlink" href="#pricing" data-ptab="rec">See pricing →</a>
-      </div>
-    </div>
-    <div class="feat-visual reveal">
-      <div class="chatcard" style="margin:0 auto;transform:rotate(-1deg)">
-        <div class="cc-head"><span class="cc-avatar">FD</span><div class="cc-id"><b>Front Desk AI</b><small>answering for Summit Roofing</small></div><span class="cc-live"><i></i>LIVE</span></div>
-        <div class="cc-body">
-          <div class="bubble ai">Hi, thanks for calling Summit Roofing — how can I help?</div>
-          <div class="bubble cust">My roof's leaking, need someone this week</div>
-          <div class="bubble ai">I can get you scheduled. What's the address &amp; best number?</div>
+      <div class="demo-col" id="demo">
+        <div class="phone" aria-label="Example AI receptionist call">
+          <div class="phone-screen">
+            <div class="phone-status"><span>9:41</span><span>📶 🔋</span></div>
+            <div class="call-head">
+              <div class="call-avatar" id="call-avatar">A</div>
+              <div>
+                <div class="call-name" id="call-name">Ace Plumbing</div>
+                <div class="call-live">AI Receptionist · Live</div>
+              </div>
+            </div>
+            <div class="transcript" id="transcript" aria-live="polite"></div>
+            <div class="captured">
+              <div class="cap" id="cap-name">Name</div>
+              <div class="cap" id="cap-number">Callback #</div>
+              <div class="cap" id="cap-reason">Reason</div>
+            </div>
+          </div>
         </div>
-        <div class="cc-foot"><span class="ck">✓</span><div><b>Booked · Tue 9:00 AM</b><small>owner texted a summary ✓</small></div></div>
+        <button class="replay" id="replay">↻ Replay the call</button>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- ============ 4.6 DEEP DIVE: WIDGET ============ -->
-<section class="sec bg-light" id="s-widget">
-  <div class="wrap feat-grid">
-    <div class="feat-visual reveal">
-      <div class="estcard" style="margin:0 auto">
-        <div class="est-label">INSTANT ESTIMATE</div>
-        <div class="est-row">Architectural shingle · 24 squares</div>
-        <div class="est-price">$11,200 – $14,600</div>
-        <div class="est-bd"><span>Materials</span><b>$6,400</b></div>
-        <div class="est-bd"><span>Labor &amp; install</span><b>$4,900</b></div>
-        <div class="est-bd"><span>Tear-off &amp; disposal</span><b>$1,100</b></div>
-        <div class="est-chip">Lead captured → texted to contractor ✓</div>
+  <!-- HOW IT WORKS -->
+  <section class="band-white" id="how">
+    <div class="wrap">
+      <div class="sec-label">How It Works</div>
+      <h2 class="sec-title">Up and running in three easy steps</h2>
+      <p class="sec-sub">No hardware. No new apps for your callers. Just a smarter phone line that works while you do.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="num">1</span>
+          <h3>Forward your number</h3>
+          <p>Keep the number your customers already know. We set the forwarding up with you; it takes a few minutes, no IT department required.</p>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <h3>Your AI answers &amp; asks</h3>
+          <p>It greets every caller in a warm, natural voice and gathers their name, callback number, and reason for calling, plus any custom questions you want asked.</p>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h3>You get the summary</h3>
+          <p>A clean recap (who called, their number, and what they need) lands in your texts and inbox seconds after they hang up. Call back fast, win the business.</p>
+        </div>
+      </div>
+      <div class="steps-cta">
+        <a class="btn" href="https://calendly.com/njanjubusiness/30min">Get yours set up this week</a>
       </div>
     </div>
-    <div class="feat-copy reveal">
-      <h2>Turn night-time website visitors into <span class="ink-blue">named leads.</span></h2>
-      <p class="lead">The homeowner browsing your site at 9pm won't fill out a contact form and won't call. Give them a reason to hand over their number: they price their own job in 60 seconds, and the lead hits your phone instantly.</p>
-      <ul class="checks">
-        <li>Itemized estimate (materials, labor, tear-off) in 60 seconds</li>
-        <li>Captures name, phone, address &amp; the exact job they priced</li>
-        <li>Embeds on your site + standalone link for Google &amp; Facebook</li>
-        <li>Every lead texted &amp; emailed to you the moment it's submitted</li>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-label">Pricing</div>
+      <h2 class="sec-title">Four plans. Every call covered.</h2>
+      <p class="sec-sub">One missed customer usually costs more than a month of service. Real pricing, right here: no "contact us for a quote."</p>
+      <div class="tiers">
+        <div class="tier">
+          <div class="plan-name">Never Miss</div>
+          <div class="price-line"><span class="amount">$750</span><span class="per">setup</span></div>
+          <div class="monthly">+ $500/mo</div>
+          <div class="fit">Solo / small team</div>
+          <ul>
+            <li>The AI answers 24/7</li>
+            <li>Missed-call-to-text</li>
+            <li>Weekly recap</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+        </div>
+        <div class="tier pop">
+          <span class="pop-badge">Most popular</span>
+          <div class="plan-name">Booked &amp; Busy</div>
+          <div class="price-line"><span class="amount">$1,500</span><span class="per">setup</span></div>
+          <div class="monthly">+ $1,200/mo</div>
+          <div class="fit">Teams of 2&ndash;5</div>
+          <ul>
+            <li>AI books jobs on your calendar</li>
+            <li>Web-form speed-to-lead</li>
+            <li>Review engine</li>
+          </ul>
+          <a class="btn" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+        </div>
+        <div class="tier">
+          <div class="plan-name">Growth Engine</div>
+          <div class="price-line"><span class="amount">$3,000</span><span class="per">setup</span></div>
+          <div class="monthly">+ $2,500/mo</div>
+          <div class="fit">$1M+ / 5+ team</div>
+          <ul>
+            <li>Multi-line routing</li>
+            <li>Quote follow-up + reactivation</li>
+            <li>CRM &amp; reporting</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+        </div>
+        <div class="tier">
+          <div class="plan-name">Command Center</div>
+          <div class="price-line"><span class="amount">$7,500</span><span class="per">setup</span></div>
+          <div class="monthly">+ $5,000/mo</div>
+          <div class="fit">Multi-location</div>
+          <ul>
+            <li>Multiple numbers &amp; dispatch</li>
+            <li>Custom CRM integration</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+        </div>
+      </div>
+      <p class="price-note">Every plan is month to month. Cancel anytime. You keep your number.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="band-white" id="features">
+    <div class="wrap">
+      <div class="sec-label">Features</div>
+      <h2 class="sec-title">More than an answering machine</h2>
+      <p class="sec-sub">Four things your voicemail definitely doesn't do.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico">🌙</div>
+          <h3>Answers when you can't</h3>
+          <p>On a ladder, with a client, or asleep: every call still gets a warm, professional answer, not a voicemail beep that sends callers to your competitor.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📝</div>
+          <h3>Takes the details, every time</h3>
+          <p>Name, callback number, reason for the call, plus your custom questions. Captured consistently on every single call, then sent straight to you.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">📲</div>
+          <h3>Texts back missed callers</h3>
+          <p>If a call slips through, the caller gets an instant text so the conversation starts anyway. Most customers won't dial the next business on the list once you've already replied.</p>
+        </div>
+        <div class="feature">
+          <div class="ico">🤝</div>
+          <h3>Hands urgent calls to you</h3>
+          <p>Real emergency? The AI can transfer urgent callers straight to your cell, so real fires get a real human and everything else gets handled without you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section id="why">
+    <div class="wrap trust-inner">
+      <div>
+        <h2>Built for your business, not sold off a shelf</h2>
+        <p class="lead">Front Desk AI isn't a login-and-good-luck software subscription. We build your receptionist around how your business actually answers the phone (your greeting, your questions, your escalation rules), test it with you on a real call, and keep tuning it after launch. You'll talk to the person who built it, every time.</p>
+      </div>
+      <ul class="trust-list">
+        <li>Set up and tested for you, live in under a week</li>
+        <li>The same voice AI behind busy call centers</li>
+        <li>Works for any business that answers a phone</li>
+        <li>Month to month: we earn your business every 30 days</li>
       </ul>
-      <div class="feat-actions">
-        <a class="btn btn-amber" href="https://frontdesk-demos.netlify.app/roof-estimate-ie/" target="_blank" rel="noopener">Try the live tool</a>
-        <a class="btn btn-textlink" href="#pricing" data-ptab="widget">See pricing →</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band-white" id="faq">
+    <div class="wrap">
+      <div class="sec-label">FAQ</div>
+      <h2 class="sec-title">Questions, answered</h2>
+      <p class="sec-sub">The four things everyone asks on the demo call.</p>
+      <div class="faq">
+        <details>
+          <summary>Do I keep my current number?</summary>
+          <p class="answer">Yes. We forward your existing line to your AI receptionist. Your callers dial the same number they always have and won't notice any difference. Cancel, and your number works exactly as before.</p>
+        </details>
+        <details>
+          <summary>Will it sound robotic?</summary>
+          <p class="answer">No. It uses a warm, natural voice and greets callers with your business name and your tone. Most callers have a normal conversation without realizing they're talking to an AI, and it never gets flustered, tired, or rude.</p>
+        </details>
+        <details>
+          <summary>What happens if a caller has an emergency?</summary>
+          <p class="answer">You decide what counts as urgent, and the AI follows your rules: transferring those calls straight to your cell, or flagging them at the top of your summary so you can call back first.</p>
+        </details>
+        <details>
+          <summary>Is there a contract?</summary>
+          <p class="answer">No contract. Every plan starts with a one-time setup (from $750) to build and tune your receptionist, then a flat monthly rate (from $500/mo), month to month. If it's not paying for itself, cancel. You keep your number either way.</p>
+        </details>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 4.7 DEEP DIVE: AUTOMATIONS ============ -->
-<section class="sec bg-gray" id="s-auto">
-  <div class="wrap feat-grid">
-    <div class="feat-copy reveal">
-      <h2>The busywork that wins jobs — <span class="ink-blue">on autopilot.</span></h2>
-      <p class="lead">The follow-ups you never have time for are exactly where the money leaks. We build done-for-you systems that plug every gap, quietly, in the background.</p>
-      <ul class="checks">
-        <li>Text back every missed call before the lead dials someone else</li>
-        <li>Turn happy jobs into 5-star reviews, automatically</li>
-        <li>Wake up old customers sitting dead in your database</li>
-        <li>Chase every quote until it's a yes or a no</li>
-      </ul>
-      <div class="feat-actions">
-        <a class="btn btn-amber" href="sms:+19099689533">💬 Text us what's leaking</a>
-        <a class="btn btn-textlink" href="#pricing" data-ptab="auto">See pricing →</a>
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Stop letting calls slip away.</h2>
+      <p>Book a 10-minute demo and hear your AI receptionist answer a call for your business, before you pay a dollar.</p>
+      <a class="btn btn-inverse" href="https://calendly.com/njanjubusiness/30min">Book a 10-Minute Demo →</a>
+      <p class="micro">Or hear it yourself right now: <a href="tel:+12296526686" style="color:#fff; font-weight:700">(229) 652-6686</a></p>
+      <p class="micro">Prefer email? <a href="mailto:matthew@frontdeskaiteam.com" style="color:#c6d6e4">matthew@frontdeskaiteam.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="foot-logo">Front Desk<span class="dot"> AI</span></div>
+      <div>
+        <a href="#how">How It Works</a> &nbsp;·&nbsp;
+        <a href="#pricing">Pricing</a> &nbsp;·&nbsp;
+        <a href="#faq">FAQ</a> &nbsp;·&nbsp;
+        <a href="mailto:matthew@frontdeskaiteam.com">Contact</a> &nbsp;·&nbsp;
+        <a href="/privacy/">Privacy</a>
       </div>
+      <div>© 2026 Front Desk AI. Made to never miss a call.</div>
     </div>
-    <div class="feat-visual reveal">
-      <div class="chip-grid">
-        <div class="chip">💬 Missed-call text-back</div>
-        <div class="chip">⭐ Automated review requests</div>
-        <div class="chip">🔁 Database reactivation</div>
-        <div class="chip">⏰ Appointment reminders</div>
-        <div class="chip">⚡ Speed-to-lead follow-up</div>
-        <div class="chip">📋 Quote follow-up</div>
-      </div>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<div class="zig" aria-hidden="true"><svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,48 L0,24 L100,8 L200,28 L300,10 L400,30 L500,6 L600,26 L700,10 L800,30 L900,8 L1000,26 L1100,10 L1200,24 L1200,48 Z" fill="oklch(0.26 0.06 255)"/></svg></div>
+  <script>
+    const CALL = [
+      ["ai", "Thanks for calling Ace Plumbing! I'm the AI receptionist. May I have your name?"],
+      ["caller", "Hi, it's Maria Lopez."],
+      ["ai", "Thanks, Maria! What's the best number to reach you?", "name"],
+      ["caller", "909-555-0142."],
+      ["ai", "Got it. And what can we help you with today?", "number"],
+      ["caller", "My water heater is leaking into the garage."],
+      ["ai", "Sorry to hear that. I've got it all down, and someone will call you right back, Maria!", "reason"]
+    ];
 
-<!-- ============ 4.8 DEMO (navy) ============ -->
-<section class="navyband sec" id="demo">
-  <div class="wrap demo-in">
-    <h2 class="sect-h reveal" style="margin-bottom:12px">Poke it before you pay for it.</h2>
-    <p class="sect-sub reveal" style="margin:0 auto">Call the AI right now and talk to it like a real customer. Open the estimate tool and price a roof in 60 seconds. No forms, no pitch — just the product, working.</p>
-    <div class="demo-actions reveal">
-      <a class="btn btn-amber btn-lg" href="tel:+19514992842">📞 Call the live AI</a>
-      <a class="btn btn-out on-navy btn-lg" href="https://frontdesk-demos.netlify.app/roof-estimate-ie/" target="_blank" rel="noopener">⚡ Try the estimate tool</a>
-    </div>
-  </div>
-</section>
+    const transcript = document.getElementById("transcript");
+    const caps = { name: document.getElementById("cap-name"), number: document.getElementById("cap-number"), reason: document.getElementById("cap-reason") };
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timers = [];
 
-<div class="zig" aria-hidden="true"><svg viewBox="0 0 1200 48" preserveAspectRatio="none" style="transform:scaleY(-1)"><path d="M0,48 L0,24 L100,8 L200,28 L300,10 L400,30 L500,6 L600,26 L700,10 L800,30 L900,8 L1000,26 L1100,10 L1200,24 L1200,48 Z" fill="oklch(0.985 0.006 85)"/></svg></div>
+    function play() {
+      timers.forEach(clearTimeout); timers = [];
+      transcript.innerHTML = "";
+      Object.values(caps).forEach(c => c.classList.remove("done"));
 
-<!-- ============ 4.9 PROCESS ============ -->
-<section class="sec bg-light">
-  <div class="wrap">
-    <h2 class="sect-h reveal">From first text to live in <span class="ink-blue">days, not months.</span></h2>
-    <ol class="steps">
-      <li class="step reveal"><span class="step-n">1</span><h3>Text us</h3><p>Shoot a text to (909) 968-9533 and tell us your trade. We'll tell you where you're leaking leads.</p></li>
-      <li class="step reveal"><span class="step-n">2</span><h3>We build it</h3><p>Branded to your business, done for you. Nothing to figure out on your end.</p></li>
-      <li class="step reveal"><span class="step-n">3</span><h3>You go live</h3><p>Live in 2–7 business days depending on the system. We test it before you trust it.</p></li>
-      <li class="step reveal"><span class="step-n">4</span><h3>Leads roll in</h3><p>Every call answered, every visitor captured. You just show up and do the work.</p></li>
-    </ol>
-  </div>
-</section>
+      CALL.forEach(([who, text, capKey], i) => {
+        const delay = reduced ? 0 : i * 1100;
+        timers.push(setTimeout(() => {
+          const b = document.createElement("div");
+          b.className = "bubble " + who;
+          const label = document.createElement("span");
+          label.className = "who";
+          label.textContent = who === "ai" ? "AI RECEPTIONIST" : "CALLER";
+          b.appendChild(label);
+          b.appendChild(document.createTextNode(text));
+          transcript.appendChild(b);
+          if (capKey) caps[capKey].classList.add("done");
+          if (transcript.children.length > 4) transcript.removeChild(transcript.children[0]);
+        }, delay));
+      });
+    }
 
-<!-- ============ 4.10 PRICING ============ -->
-<section class="sec bg-gray" id="pricing">
-  <div class="wrap">
-    <h2 class="sect-h reveal">Transparent pricing. Month-to-month. <span class="ink-blue">Cancel anytime.</span></h2>
-    <p class="sect-sub reveal">No contracts, no lock-in. Our delivery keeps you, not paperwork. <span class="founding-pill">Founding-client pricing on now</span></p>
-
-    <div class="tabs reveal" role="tablist" aria-label="Product pricing">
-      <button class="tab active" data-tab="rec" role="tab" aria-selected="true">AI Receptionist</button>
-      <button class="tab" data-tab="widget" role="tab" aria-selected="false">Estimate Widget</button>
-      <button class="tab" data-tab="auto" role="tab" aria-selected="false">Automations</button>
-    </div>
-
-    <div class="pgrid four" id="ptab-rec">
-      <div class="pcard reveal"><h4>Never Miss</h4><div class="amt">$750<small>setup</small></div><div class="mo">+ $500/mo</div><p class="who">Solo / 1–2 trucks</p><ul><li>The AI answers 24/7</li><li>Missed-call-to-text</li><li>Weekly recap</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard featured reveal"><span class="pbadge">Most popular</span><h4>Booked &amp; Busy</h4><div class="amt">$1,500<small>setup</small></div><div class="mo">+ $1,200/mo</div><p class="who">2–5 trucks</p><ul><li>AI books jobs on your calendar</li><li>Web-form speed-to-lead</li><li>Review engine</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard reveal"><h4>Growth Engine</h4><div class="amt">$3,000<small>setup</small></div><div class="mo">+ $2,500/mo</div><p class="who">$1M+ / 5+ trucks</p><ul><li>Multi-line routing</li><li>Quote follow-up + reactivation</li><li>CRM &amp; reporting</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard reveal"><h4>Command Center</h4><div class="amt">$7,500<small>setup</small></div><div class="mo">+ $5,000/mo</div><p class="who">Multi-location</p><ul><li>Multiple numbers &amp; dispatch</li><li>Custom CRM integration</li><li>Dedicated account manager</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-    </div>
-
-    <div class="pgrid one hidden" id="ptab-widget">
-      <div class="pcard amberfeat reveal"><span class="pbadge amber">Founding rate — 3 spots</span><h4>Instant Estimate Widget</h4><div class="amt"><span class="strike">$1,500</span>$750<small>setup</small></div><div class="mo">+ $297/mo</div><ul><li>Itemized 60-second estimates on your site</li><li>Every lead texted to you instantly</li><li>Standalone link for Google &amp; Facebook ads</li><li>Live in 48 hours</li></ul><a class="btn btn-amber" href="sms:+19099689533">💬 Claim the founding rate</a></div>
-    </div>
-
-    <div class="pgrid four hidden" id="ptab-auto">
-      <div class="pcard reveal"><h4>Missed-call text-back</h4><div class="amt">$250<small>setup</small></div><div class="mo">+ $97/mo</div><ul><li>Every missed call texted back in seconds</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard reveal"><h4>Review engine</h4><div class="amt">$350<small>setup</small></div><div class="mo">+ $147/mo</div><ul><li>Turn happy jobs into 5-star reviews</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard reveal"><h4>Database reactivation</h4><div class="amt">$500<small>per campaign</small></div><div class="mo">&nbsp;</div><ul><li>Wake up old customers sitting in your list</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-      <div class="pcard reveal"><h4>Full follow-up stack</h4><div class="amt">$750<small>setup</small></div><div class="mo">+ $297/mo</div><ul><li>Every automation above, working together</li></ul><a class="btn btn-out" href="sms:+19099689533">💬 Text to start</a></div>
-    </div>
-
-    <p class="founding-note reveal">Founding-client rates are available to the first 3 businesses per trade, per city — in exchange for a video testimonial.</p>
-    <p class="guarantee reveal">🛡️ <b>The risk is ours.</b> If in your first 30 days the system doesn't capture leads you'd otherwise have lost, month two is free, and you keep everything.</p>
-  </div>
-</section>
-
-<!-- ============ 4.11 WHY US ============ -->
-<section class="sec bg-light" id="why-us">
-  <div class="wrap feat-grid">
-    <div class="feat-copy reveal">
-      <h2>Local, founder-built, and <span class="ink-blue">skin in the game.</span></h2>
-      <p class="lead">Front Desk AI is based right here in the Inland Empire, and every system is built by hand to a senior standard. We're newer, which is exactly why the offer is built to earn trust instead of assuming it.</p>
-      <ul class="why-list">
-        <li>Month-to-month: you stay because it works, not because of a contract</li>
-        <li>30-day capture guarantee. We carry the risk</li>
-        <li>Founding-client pricing while we build our case studies</li>
-        <li>You text the person who builds it. Every time.</li>
-      </ul>
-      <div class="feat-actions">
-        <a class="btn btn-amber" href="sms:+19099689533">💬 Text Matthew · (909) 968-9533</a>
-      </div>
-    </div>
-    <div class="feat-visual reveal">
-      <div class="chips-trust">
-        <div class="row"><span>📍</span> Southern California local — not offshore</div>
-        <div class="row"><span>🤝</span> Month-to-month, cancel anytime</div>
-        <div class="row"><span>🛡️</span> 30-day capture guarantee</div>
-        <div class="row"><span>⚡</span> Live in days, not months</div>
-        <div class="row"><span>👤</span> Founder-built, founder-answered</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.12 MEET MATTHEW ============ -->
-<section class="sec bg-gray" id="meet-matthew">
-  <div class="wrap">
-    <div class="founder-card reveal">
-      <h2>The person who builds it — and answers your text.</h2>
-      <p>I'm Matthew Ngechu, founder of Front Desk AI. I build every system myself, by hand, right here in the Inland Empire. When you text, you're texting me — not a sales team, not an offshore help desk. I only win if your phone rings with booked jobs, which is why every plan is month-to-month and covered by the 30-day capture guarantee.</p>
-      <a class="btn btn-amber" href="sms:+19099689533">💬 Text Matthew · (909) 968-9533</a>
-    </div>
-  </div>
-</section>
-
-<div class="zig" aria-hidden="true"><svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,48 L0,24 L100,8 L200,28 L300,10 L400,30 L500,6 L600,26 L700,10 L800,30 L900,8 L1000,26 L1100,10 L1200,24 L1200,48 Z" fill="oklch(0.22 0.055 258)"/></svg></div>
-
-<!-- ============ 4.13 FINAL CTA (navy) ============ -->
-<section class="navyband sec" id="contact">
-  <div class="wrap final-in">
-    <h2 class="reveal">Stop losing leads.<br>It starts with <span class="ink-amber">one text.</span></h2>
-    <p class="reveal">Tell us your trade and your biggest headache. We'll text back the same day with exactly where you're leaking work — no pitch deck, no pressure.</p>
-    <div class="final-actions reveal">
-      <a class="btn btn-amber btn-lg" href="sms:+19099689533">💬 Text (909) 968-9533</a>
-      <a class="btn btn-out on-navy btn-lg" href="sms:+19099689533">📅 Book a 15-minute call</a>
-    </div>
-    <a class="tiny-link reveal" href="tel:+19514992842">📞 Or hear the AI: (951) 499-2842</a>
-  </div>
-</section>
-
-</main>
-
-<!-- ============ 4.14 FOOTER ============ -->
-<footer class="footer">
-  <div class="wrap foot-grid">
-    <div class="foot-brand">
-      <a class="brand" href="#top"><span class="brand-tile">FD</span>Front Desk AI</a>
-      <p>The systems that catch every lead your business is losing. Serving the Inland Empire &amp; Greater Los Angeles.</p>
-    </div>
-    <nav class="foot-col" aria-label="Products"><h5>What we do</h5><a href="#s-receptionist">AI Receptionist</a><a href="#s-widget">Estimate Widgets</a><a href="#s-auto">AI Automations</a></nav>
-    <nav class="foot-col" aria-label="Company"><h5>Company</h5><a href="#pricing">Pricing</a><a href="#why-us">Why us</a><a href="#demo">Try a demo</a><a href="sms:+19099689533">Book a call</a><a href="/privacy/">Privacy</a></nav>
-    <nav class="foot-col" aria-label="Contact"><h5>Contact</h5><a href="sms:+19099689533">💬 Text: (909) 968-9533</a><a href="tel:+19514992842">AI line: (951) 499-2842</a><a href="mailto:matthew@frontdeskaiteam.com">matthew@frontdeskaiteam.com</a></nav>
-  </div>
-  <div class="wrap foot-bottom">
-    <span>© 2026 Front Desk AI · Southern California</span>
-    <span>Built by the person who answers your text.</span>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
+    document.getElementById("replay").addEventListener("click", play);
+    play();
+  </script>
 </body>
 </html>
