@@ -254,7 +254,7 @@
         <p class="sub">Your AI answers every call: nights, weekends, mid-job, mid-appointment, mid-meeting. It captures each caller's name, number, and reason, then texts you the summary in seconds.</p>
         <div class="cta-row">
           <a class="btn" href="https://calendly.com/njanjubusiness/30min">Book a 10-Minute Demo</a>
-          <a class="btn btn-ghost" href="#demo">See It In Action</a>
+          <a class="btn btn-ghost" href="#demo" id="see-in-action">See It In Action</a>
         </div>
         <p class="try-line">Or call <a href="tel:+12296526686"><strong>(229) 652-6686</strong></a> right now and talk to the AI receptionist live.</p>
         <div class="hero-points">
@@ -283,7 +283,6 @@
             </div>
           </div>
         </div>
-        <button class="replay" id="replay">↻ Replay the call</button>
       </div>
     </div>
   </header>
@@ -515,7 +514,7 @@
       });
     }
 
-    document.getElementById("replay").addEventListener("click", play);
+    document.getElementById("see-in-action").addEventListener("click", () => play());
     play();
   </script>
 </body>
