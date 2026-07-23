@@ -534,5 +534,12 @@
     document.getElementById("see-in-action").addEventListener("click", () => play());
     play();
   </script>
+  <!-- Meta Pixel: fire Schedule when a booking button (Calendly) is clicked -->
+  <script>
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href*="calendly.com"]');
+      if (a && typeof fbq === "function") { fbq("track", "Schedule"); }
+    });
+  </script>
 </body>
 </html>
