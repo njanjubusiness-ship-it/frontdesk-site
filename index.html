@@ -116,7 +116,11 @@
       .hero .hero-call { font-size: clamp(34px, 11vw, 46px); }
       .hero-tagline { font-size: 19px; margin-bottom: 10px; }
       .hero-body { font-size: 16px; margin-bottom: 20px; }
-      .hero-points { margin-top: 4px; }
+      /* Center-align hero content on mobile only */
+      .hero-copy { text-align: center; }
+      .hero-body { margin-left: auto; margin-right: auto; }
+      .cta-row { justify-content: center; }
+      .hero-points { margin-top: 4px; flex-direction: column; align-items: center; gap: 12px; }
     }
 
     /* Phone demo */
