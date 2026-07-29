@@ -305,7 +305,7 @@
         <a href="#pricing">Pricing</a>
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
-        <a class="btn nav-cta" href="https://calendly.com/njanjubusiness/30min">Book a Demo</a>
+        <a class="btn nav-cta" href="https://calendly.com/njanjubusiness/30min" data-fb-event="BookingClick">Book a Demo</a>
       </div>
     </nav>
   </div>
@@ -314,12 +314,12 @@
   <header class="hero wrap" id="top">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="hero-call">Call it. <a class="hero-tel" href="tel:+19514992842" data-lead>(951) 499-2842</a></h1>
+        <h1 class="hero-call">Call it. <a class="hero-tel" href="tel:+19514992842" data-lead data-fb-event="DemoCallClick">(951) 499-2842</a></h1>
         <p class="hero-tagline">It's an AI receptionist for med spas. Try to tell.</p>
         <p class="hero-body">Answers every call, sounds human, books consults straight to your calendar. Works at 9pm and on Sundays.</p>
         <div class="cta-row">
-          <a class="btn" href="tel:+19514992842" data-lead>Call the demo</a>
-          <a class="btn btn-ghost" href="https://calendly.com/njanjubusiness/30min" data-lead>Book a call with Matthew</a>
+          <a class="btn" href="tel:+19514992842" data-lead data-fb-event="DemoCallClick">Call the demo</a>
+          <a class="btn btn-ghost" href="https://calendly.com/njanjubusiness/30min" data-lead data-fb-event="BookingClick">Book a call with Matthew</a>
         </div>
         <div class="hero-points">
           <span>Set up in under a week</span>
@@ -559,6 +559,13 @@
     document.addEventListener("click", function (e) {
       var el = e.target.closest("[data-lead]");
       if (el && typeof fbq === "function") { fbq("track", "Lead"); }
+    });
+  </script>
+  <!-- Meta Pixel: fire a distinct custom event per button (DemoCallClick / BookingClick) -->
+  <script>
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest("[data-fb-event]");
+      if (el && typeof fbq === "function") { fbq("trackCustom", el.getAttribute("data-fb-event")); }
     });
   </script>
 </body>
